@@ -1,0 +1,13 @@
+<?php
+
+/* Should be of the form:
+*	$settings['trusted_host_patterns'] = [
+*	   '^bradford-abbas\.uk$',
+*	   '^.+\.bradford-abbas\.uk$',
+*	 ];
+*/
+
+$settings['trusted_host_patterns'] = [
+   "^{{ drupal_domain_regex }}",
+   "^.+\.{{ drupal_domain_regex }}",
+ ];

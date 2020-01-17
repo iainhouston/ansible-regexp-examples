@@ -1,0 +1,42 @@
+---
+    -   hosts: 127.0.0.1
+        gather_facts: no
+        connection: local
+    
+        vars:
+            url: "http://example.com/users/foo/resources/bar"
+            fdqn: "staging.bradford-abbas.uk"
+            fdqns: ["staging.bradford-abbas.uk", "bradford-abbas.uk" ]
+            drupal_domain_regex: "{{ fdqn | regex_findall('([^.]+)')  | join('\\.') }}"
+
+        tasks:
+        
+            -   name: Try regex_escape and map and list
+                debug:
+                    msg:  "{{ fdqns | map('regex_escape') | list }}"
+
+            -   name: Try regex_escape
+                debug:
+                    msg:  "{{ fdqn | regex_escape }}"
+
+            -   name: Try regex_replace and map and list
+                debug:
+                    msg:  "{{ fdqns | map('regex_replace', '^(.*)$', 'https://\\1') | list }}"
+
+            -   name: Try regex_search
+                debug:
+                    msg: 'searched pattern 2'
+                when: url | regex_search("/users/.*/resources/.*")
+
+            -   name: Try regex_findall 1
+                debug:
+                   msg:  "{{ drupal_domain_regex }}"
+
+            -   name: Try regex_findall 2
+                debug:
+                   msg: "{{ 'Some DNS servers are 8.8.8.8 and 8.8.4.4' | regex_findall('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b') }}"
+
+            -   name: Template Drupal settings file using drupal_domain_regex
+                template:
+                    src: ./settings.php.j2
+                    dest: ./settings.php
