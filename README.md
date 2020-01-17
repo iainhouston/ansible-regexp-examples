@@ -5,15 +5,15 @@ Example playbook playgound testing some Ansible regular expression filters per [
 
 Run: 
 
-```
-ansible-playbook -i ./ansible_hosts ./playbook.yml
+```zsh
+√ ansible-regexp-examples % ansible-playbook -i ./ansible_hosts ./playbook.yml
 ```
 
 # Context 
 
 Ansible evidently clones its own python executable. We installed Ansible with Homebrew.
 
-```bash
+```zsh
 √ ansible-regexp-examples % ansible --version
 ansible 2.9.2
   config file = None
@@ -25,11 +25,10 @@ ansible 2.9.2
 
 And for the *remote* server's (`localhost`'s) python3 - per `ansible_python_interpreter=/usr/bin/python3` in `ansible_hosts` - it uses macOS Catalina's default installed python3:
 
-```bash
+```zsh
 √ ansible-regexp-examples % python3 --version 
 Python 3.7.3
 √ ansible-regexp-examples % which python3 # `localhost`'s python3
 /usr/bin/python3
-
 ```
 
