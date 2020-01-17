@@ -11,13 +11,13 @@
 
         tasks:
         
-            -   name: Try regex_escape and map and list
-                debug:
-                    msg:  "{{ fdqns | map('regex_escape') | list }}"
-
             -   name: Try regex_escape
                 debug:
                     msg:  "{{ fdqn | regex_escape }}"
+        
+            -   name: Try regex_escape and map and list
+                debug:
+                    msg:  "{{ fdqns | map('regex_escape') | list }}"
 
             -   name: Try regex_replace and map and list
                 debug:
@@ -36,6 +36,9 @@
                 debug:
                    msg: "{{ 'Some DNS servers are 8.8.8.8 and 8.8.4.4' | regex_findall('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b') }}"
 
+            #   This template uses `drupal_domain_regex'
+            #   which provides sufficient mangling for our purposes 
+            #   and less escaping than `regex_escape`
             -   name: Template Drupal settings file using drupal_domain_regex
                 template:
                     src: ./settings.php.j2
