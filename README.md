@@ -13,7 +13,7 @@ ansible-playbook -i ./ansible_hosts ./playbook.yml
 
 Ansible evidently clones its own python executable. We installed Ansible with Homebrew.
 
-```
+```bash
 √ ansible-regexp-examples % ansible --version
 ansible 2.9.2
   config file = None
@@ -25,7 +25,7 @@ ansible 2.9.2
 
 And for the *remote* server's (`localhost`'s) python3 - per `ansible_python_interpreter=/usr/bin/python3` in `ansible_hosts` - it uses macOS Catalina's default installed python3:
 
-```
+```bash
 √ ansible-regexp-examples % python3 --version 
 Python 3.7.3
 √ ansible-regexp-examples % which python3 # `localhost`'s python3
