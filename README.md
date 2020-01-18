@@ -23,7 +23,7 @@ ansible 2.9.2
   python version = 3.7.5 (default, Nov 30 2019, 08:09:42) [Clang 11.0.0 (clang-1100.0.33.12)]
 ```
 
-And for the *remote* server's (`localhost`'s) python3 - per `ansible_python_interpreter=/usr/bin/python3` in `ansible_hosts` - it uses macOS Catalina's default installed python3:
+And for the *remote* server's python3 - per `ansible_python_interpreter=/usr/bin/python3` in `ansible_hosts`. In this case the *remote* server is also our (`localhost`) macOS controlling machine as so uses Catalina's default installed python3:
 
 ```zsh
 √ ansible-regexp-examples % python3 --version 
